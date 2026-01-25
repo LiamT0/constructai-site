@@ -1,127 +1,79 @@
-/* Core Styles for ForgeOS */
+import { Card, CardContent } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
-:root {
-  --color-primary-start: #38b6c1;
-  --color-primary-end: #52d6c8;
-  --color-secondary: #f5b941;
-  --color-accent-green: #47e1b7;
-  --color-text: #e2e8f0;
-  --color-muted: #9baec9;
-  --bg-base: #1f1f1f;
-  --bg-panel: rgba(255, 255, 255, 0.05);
-  --border-light: rgba(255, 255, 255, 0.1);
-  --border-medium: rgba(255, 255, 255, 0.05);
-  --transition: all 0.3s ease;
-}
+export default function ProductSlider() {
+  const products = [
+    {
+      title: "Smart Estimating",
+      description:
+        "AI-powered quotes that learn from your pricing history. Generate accurate estimates in seconds.",
+      icon: "calculator",
+      image: "/smart-estimating.png",
+    },
+    {
+      title: "AI Customer Service",
+      description:
+        "24/7 automated responses to inquiries, booking requests, and follow-ups. Never miss a lead again.",
+      icon: "message-circle",
+      image: "/customer-service.png",
+    },
+    {
+      title: "Intelligent Scheduling",
+      description:
+        "Optimize routes, reduce drive time, and maximize jobs per day with AI-driven scheduling.",
+      icon: "calendar",
+      image: "/scheduling.png",
+    },
+    {
+      title: "Document Automation",
+      description:
+        "Contracts, invoices, and compliance docs generated and sent automatically.",
+      icon: "file-text",
+      image: "/document-automation.png",
+    },
+  ];
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: var(--bg-base);
-  color: var(--color-text);
-  line-height: 1.6;
-}
+  return (
+    <div className="w-full px-6 py-16 bg-gradient-to-br from-[#020617] to-[#0f172a] text-white">
+      <div className="max-w-6xl mx-auto">
+        <h2 className="text-4xl sm:text-5xl font-bold text-center mb-6">
+          Explore Our <span className="text-blue-400">AI Tools</span>
+        </h2>
+        <p className="text-center text-lg text-muted-foreground mb-12 max-w-2xl mx-auto">
+          Powerful tools built for the unique challenges of the trades. Slide through to explore.
+        </p>
 
-.container {
-  max-width: 1100px;
-  margin: 0 auto;
-  padding: 2rem;
-}
-
-nav ul {
-  list-style: none;
-  display: flex;
-  gap: 2rem;
-  padding: 0;
-}
-
-nav a {
-  text-decoration: none;
-  color: var(--color-text);
-  font-weight: bold;
-  transition: color 0.2s ease;
-}
-
-nav a:hover {
-  color: var(--color-accent-green);
-}
-
-header {
-  background: var(--bg-panel);
-  border-bottom: 1px solid var(--border-light);
-}
-
-.logo {
-  height: 50px;
-}
-
-.hero {
-  text-align: center;
-  padding: 6rem 2rem;
-  background: linear-gradient(135deg, var(--color-primary-start), var(--color-primary-end));
-  color: #fff;
-}
-
-.hero h1 {
-  font-size: 3rem;
-  margin-bottom: 1rem;
-}
-
-.btn-primary, .btn-secondary {
-  background: var(--color-secondary);
-  color: #000;
-  padding: 0.75rem 1.5rem;
-  border: none;
-  border-radius: 6px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background 0.2s;
-  text-decoration: none;
-  display: inline-block;
-}
-
-.btn-secondary {
-  background: var(--color-accent-green);
-  color: #000;
-}
-
-.btn-primary:hover, .btn-secondary:hover {
-  opacity: 0.85;
-}
-
-.section {
-  padding: 4rem 2rem;
-  background: var(--bg-base);
-}
-
-.section.dark {
-  background: #141414;
-}
-
-h2 {
-  font-size: 2rem;
-  margin-bottom: 1.5rem;
-}
-
-.features {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 2rem;
-}
-
-.features li {
-  flex: 1;
-  min-width: 250px;
-  background: var(--bg-panel);
-  padding: 1.5rem;
-  border-radius: 10px;
-  border: 1px solid var(--border-light);
-}
-
-footer {
-  text-align: center;
-  padding: 2rem;
-  font-size: 0.9rem;
-  color: var(--color-muted);
-  background: #0f0f0f;
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {products.map((product, idx) => (
+            <motion.div
+              key={idx}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: idx * 0.15 }}
+            >
+              <Card className="rounded-2xl overflow-hidden bg-[#0f172a] border border-white/10 shadow-md hover:shadow-lg transition duration-300">
+                <CardContent className="p-6 flex flex-col items-start gap-4">
+                  <Image
+                    src={product.image}
+                    alt={product.title}
+                    width={80}
+                    height={80}
+                    className="rounded-xl bg-white/10 p-2"
+                  />
+                  <h3 className="text-xl font-semibold text-white">{product.title}</h3>
+                  <p className="text-muted-foreground text-sm">{product.description}</p>
+                  <Button variant="ghost" className="mt-auto px-0 text-sm font-medium text-blue-400 hover:underline">
+                    Learn More <ArrowRight className="w-4 h-4 ml-1" />
+                  </Button>
+                </CardContent>
+              </Card>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
 }
