@@ -3,51 +3,1158 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ForgeOS</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>ForgeOS – AI Automation for Business</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Inter', sans-serif;
+      line-height: 1.6;
+      color: #1f2937;
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: #0a1628;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo-box {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      background: #3b82f6;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .logo-text {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+      align-items: center;
+    }
+
+    nav a {
+      color: rgba(255, 255, 255, 0.7);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    nav a:hover {
+      color: white;
+    }
+
+    .btn-header {
+      background: #3b82f6;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s;
+    }
+
+    .btn-header:hover {
+      background: #2563eb;
+    }
+
+    /* Hero Section */
+    .hero {
+      background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+      padding: 5rem 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.15) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+
+    .hero-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59, 130, 246, 0.1);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: #60a5fa;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 500;
+      margin-bottom: 2rem;
+    }
+
+    .hero h1 {
+      font-size: 4rem;
+      font-weight: 800;
+      color: white;
+      margin-bottom: 1.5rem;
+      line-height: 1.1;
+    }
+
+    .hero-accent {
+      color: #60a5fa;
+    }
+
+    .hero-description {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 1.25rem;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background: #3b82f6;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s;
+      border: 2px solid transparent;
+    }
+
+    .btn-primary:hover {
+      background: #2563eb;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: white;
+      padding: 1rem 2rem;
+      border-radius: 10px;
+      font-weight: 600;
+      text-decoration: none;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      transition: all 0.3s;
+    }
+
+    .btn-secondary:hover {
+      border-color: rgba(255, 255, 255, 0.4);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-stats {
+      display: flex;
+      gap: 3rem;
+      margin-top: 4rem;
+    }
+
+    .stat-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .stat-icon {
+      width: 48px;
+      height: 48px;
+      background: rgba(59, 130, 246, 0.1);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: white;
+    }
+
+    .stat-label {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 0.9rem;
+    }
+
+    /* Dashboard Preview */
+    .dashboard-preview {
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      backdrop-filter: blur(10px);
+      position: relative;
+    }
+
+    .dashboard-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .dashboard-title {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 600;
+    }
+
+    .dashboard-icon {
+      width: 60px;
+      height: 60px;
+      background: #3b82f6;
+      border-radius: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 30px;
+    }
+
+    /* Product Slider Styles */
+    .product-slider {
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+
+    .product-slides {
+      position: relative;
+      width: 100%;
+    }
+
+    .product-slide {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      opacity: 0;
+      transform: translateX(100%);
+      transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 2rem;
+      background: rgba(15, 23, 42, 0.8);
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+    }
+
+    .product-slide.active {
+      position: relative;
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .product-slide.exit-left {
+      transform: translateX(-100%);
+      opacity: 0;
+    }
+
+    .product-slide.enter-right {
+      transform: translateX(100%);
+      opacity: 0;
+    }
+
+    .product-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 1.5rem;
+      background: rgba(59, 130, 246, 0.2);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 40px;
+    }
+
+    .product-title {
+      color: white;
+      font-size: 1.75rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+
+    .product-description {
+      color: rgba(255, 255, 255, 0.7);
+      font-size: 1rem;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+
+    .product-features {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .feature-tag {
+      background: rgba(59, 130, 246, 0.2);
+      color: #60a5fa;
+      padding: 0.5rem 1rem;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      border: 1px solid rgba(59, 130, 246, 0.3);
+    }
+
+    /* Slider Navigation */
+    .slider-dots {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+      margin-top: 2rem;
+    }
+
+    .slider-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      padding: 0;
+    }
+
+    .slider-dot:hover {
+      background: rgba(255, 255, 255, 0.5);
+      transform: scale(1.2);
+    }
+
+    .slider-dot.active {
+      background: #3b82f6;
+      width: 32px;
+      border-radius: 6px;
+    }
+
+    .slider-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 48px;
+      height: 48px;
+      background: rgba(59, 130, 246, 0.8);
+      border: 1px solid rgba(59, 130, 246, 0.5);
+      border-radius: 50%;
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 10;
+      font-weight: bold;
+    }
+
+    .slider-arrow:hover {
+      background: rgba(59, 130, 246, 1);
+      transform: translateY(-50%) scale(1.1);
+      box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+    }
+
+    .slider-arrow:active {
+      transform: translateY(-50%) scale(0.95);
+    }
+
+    .slider-prev {
+      left: 10px;
+    }
+
+    .slider-next {
+      right: 10px;
+    }
+
+    /* Section Styles */
+    .section {
+      padding: 6rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    .section-light {
+      background: #f9fafb;
+    }
+
+    .section-badge {
+      display: inline-block;
+      background: #dbeafe;
+      color: #1e40af;
+      padding: 0.5rem 1rem;
+      border-radius: 50px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-size: 3rem;
+      font-weight: 800;
+      text-align: center;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .section-subtitle {
+      text-align: center;
+      font-size: 1.25rem;
+      color: #6b7280;
+      max-width: 700px;
+      margin: 0 auto 4rem;
+    }
+
+    .accent {
+      color: #3b82f6;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: white;
+      border: 1px solid #e5e7eb;
+      border-radius: 16px;
+      padding: 2.5rem;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+      border-color: #3b82f6;
+    }
+
+    .service-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 1.5rem;
+    }
+
+    .icon-blue { background: #dbeafe; color: #3b82f6; }
+    .icon-green { background: #d1fae5; color: #059669; }
+    .icon-orange { background: #fed7aa; color: #ea580c; }
+    .icon-purple { background: #e9d5ff; color: #9333ea; }
+    .icon-red { background: #fecaca; color: #dc2626; }
+    .icon-cyan { background: #cffafe; color: #0891b2; }
+
+    .service-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #111827;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .service-card p {
+      color: #6b7280;
+      line-height: 1.7;
+    }
+
+    /* Stats Grid */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .stat-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      text-align: center;
+      border: 1px solid #e5e7eb;
+    }
+
+    .stat-card-icon {
+      width: 70px;
+      height: 70px;
+      margin: 0 auto 1.5rem;
+      border-radius: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 32px;
+    }
+
+    .stat-card-value {
+      font-size: 3rem;
+      font-weight: 800;
+      color: #111827;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card-label {
+      font-weight: 600;
+      color: #374151;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-card-description {
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    /* Process Section */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .process-card {
+      background: white;
+      border-radius: 16px;
+      padding: 2.5rem;
+      position: relative;
+      border: 1px solid #e5e7eb;
+    }
+
+    .process-number {
+      position: absolute;
+      top: -15px;
+      right: 20px;
+      font-size: 5rem;
+      font-weight: 800;
+      color: #f3f4f6;
+      line-height: 1;
+    }
+
+    .process-icon {
+      width: 60px;
+      height: 60px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      margin-bottom: 1.5rem;
+    }
+
+    .process-card h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 1rem;
+      color: #111827;
+    }
+
+    .process-card p {
+      color: #6b7280;
+      line-height: 1.7;
+    }
+
+    /* CTA Section */
+    .cta-section {
+      background: linear-gradient(135deg, #0a1628 0%, #1e3a5f 100%);
+      padding: 6rem 2rem;
+      text-align: center;
+      color: white;
+    }
+
+    .cta-section h2 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .cta-section p {
+      font-size: 1.25rem;
+      color: rgba(255, 255, 255, 0.8);
+      margin-bottom: 2.5rem;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* Footer */
+    footer {
+      background: #0a1628;
+      color: white;
+      padding: 4rem 2rem 2rem;
+    }
+
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr;
+      gap: 4rem;
+      margin-bottom: 3rem;
+    }
+
+    .footer-brand {
+      max-width: 400px;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-description {
+      color: rgba(255, 255, 255, 0.6);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-section h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: white;
+    }
+
+    .footer-bottom {
+      max-width: 1400px;
+      margin: 0 auto;
+      padding-top: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      text-align: center;
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+      .hero-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+
+      .hero h1 {
+        font-size: 3rem;
+      }
+
+      .dashboard-preview {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      nav ul {
+        display: none;
+      }
+
+      .hero h1 {
+        font-size: 2.5rem;
+      }
+
+      .hero-stats {
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .section-title {
+        font-size: 2rem;
+      }
+
+      .services-grid,
+      .stats-grid,
+      .process-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 <body>
-  <header class="site-header">
-    <img src="forgeos-logo.png" alt="ForgeOS Logo" class="logo" />
-    <nav>
-      <ul>
-        <li><a href="#what-we-do">What We Do</a></li>
-        <li><a href="#why-us">Why Us</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-    </nav>
+  <!-- Header -->
+  <header>
+    <div class="nav-container">
+      <div class="logo-box">
+        <div class="logo-icon">⚡</div>
+        <span class="logo-text">ForgeOS</span>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#services">Solutions</a></li>
+          <li><a href="#contact" class="btn-header">Get Started</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section class="hero">
-      <h1>Smarter Work Starts Here</h1>
-      <p>We build custom AI tools that help your business work faster, save money, and stay ahead — no matter your industry.</p>
-      <a class="cta" href="#contact">Book a Free Consultation</a>
-    </section>
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-badge">
+          🤖 AI Automation Built Around Your Workflow
+        </div>
+        <h1>
+          Custom AI Systems <br/>
+          For <span class="hero-accent">Your Business</span>
+        </h1>
+        <p class="hero-description">
+          We build AI solutions that automate workflows, save time, and increase revenue — tailored specifically for businesses like yours.
+        </p>
+        <div class="hero-buttons">
+          <a href="#contact" class="btn-primary">
+            Book a Free Consultation →
+          </a>
+          <a href="#services" class="btn-secondary">
+            See Our Work
+          </a>
+        </div>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-icon">🚀</div>
+            <div>
+              <div class="stat-value">2 Weeks</div>
+              <div class="stat-label">To Launch</div>
+            </div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon">💼</div>
+            <div>
+              <div class="stat-value">Custom</div>
+              <div class="stat-label">Pricing</div>
+            </div>
+          </div>
+        </div>
+        <div style="margin-top: 2rem; padding: 1.5rem; background: rgba(59, 130, 246, 0.1); border: 1px solid rgba(59, 130, 246, 0.3); border-radius: 12px;">
+          <p style="color: rgba(255,255,255,0.9); font-size: 0.95rem; line-height: 1.6;">
+            <strong style="color: #60a5fa;">Typical engagements start around $1k/month</strong> for a single system. Most clients add 2-3 systems as they see results. We'd rather build deep partnerships with businesses serious about transformation than quick one-off projects.
+          </p>
+        </div>
+      </div>
+      <div class="dashboard-preview">
+        <div class="dashboard-header">
+          <h3 class="dashboard-title">Our AI Solutions</h3>
+          <div class="dashboard-icon">⚡</div>
+        </div>
+        
+        <!-- Slider Container -->
+        <div class="product-slider">
+          <div class="product-slides">
+            <!-- Slide 1 -->
+            <div class="product-slide active">
+              <div class="product-icon">⏰</div>
+              <h4 class="product-title">Smart Timekeeping</h4>
+              <p class="product-description">Automated time tracking that syncs directly with your payroll system. Eliminates manual entry and timesheet disputes.</p>
+              <div class="product-features">
+                <span class="feature-tag">Auto-sync</span>
+                <span class="feature-tag">Mobile Ready</span>
+                <span class="feature-tag">GPS Tracking</span>
+              </div>
+            </div>
+            
+            <!-- Slide 2 -->
+            <div class="product-slide">
+              <div class="product-icon">👥</div>
+              <h4 class="product-title">HR Automation</h4>
+              <p class="product-description">Streamline onboarding, PTO requests, and employee records with intelligent automation that works while you sleep.</p>
+              <div class="product-features">
+                <span class="feature-tag">Onboarding</span>
+                <span class="feature-tag">PTO Manager</span>
+                <span class="feature-tag">Records</span>
+              </div>
+            </div>
+            
+            <!-- Slide 3 -->
+            <div class="product-slide">
+              <div class="product-icon">📊</div>
+              <h4 class="product-title">KPI Tracking</h4>
+              <p class="product-description">Real-time dashboards that automatically collect and visualize your key business metrics from all your systems.</p>
+              <div class="product-features">
+                <span class="feature-tag">Real-time</span>
+                <span class="feature-tag">Custom Metrics</span>
+                <span class="feature-tag">Visual Reports</span>
+              </div>
+            </div>
+            
+            <!-- Slide 4 -->
+            <div class="product-slide">
+              <div class="product-icon">📧</div>
+              <h4 class="product-title">Invoice Processor</h4>
+              <p class="product-description">AI reads incoming invoice emails and converts them to upload-ready files for QuickBooks, Xero, or your accounting software.</p>
+              <div class="product-features">
+                <span class="feature-tag">Email Parser</span>
+                <span class="feature-tag">Auto-format</span>
+                <span class="feature-tag">QB Ready</span>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Navigation Dots -->
+          <div class="slider-dots">
+            <button class="slider-dot active" data-slide="0"></button>
+            <button class="slider-dot" data-slide="1"></button>
+            <button class="slider-dot" data-slide="2"></button>
+            <button class="slider-dot" data-slide="3"></button>
+          </div>
+          
+          <!-- Arrow Buttons -->
+          <button class="slider-arrow slider-prev">‹</button>
+          <button class="slider-arrow slider-next">›</button>
+        </div>
+        
+        <div style="margin-top: 1.5rem; padding: 1rem; background: rgba(59, 130, 246, 0.1); border-radius: 8px; border: 1px solid rgba(59, 130, 246, 0.3);">
+          <p style="color: rgba(255,255,255,0.8); font-size: 0.9rem; text-align: center;">
+            <strong style="color: #60a5fa;">Integrates with:</strong> QuickBooks, Xero, Salesforce, Google Workspace & more
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-    <section id="what-we-do">
-      <h2>What We Do</h2>
-      <p>ForgeOS builds AI-powered solutions that automate time-consuming workflows for businesses of any size. From invoice processing and ERP syncing to automated lead generation and follow-up — we design tools that act like digital employees tailored to your needs.</p>
-    </section>
+  <!-- What We Do Section -->
+  <section id="what-we-do" class="section">
+    <div style="text-align: center;">
+      <span class="section-badge">What We Do</span>
+    </div>
+    <h2 class="section-title">
+      We Build <span class="accent">Custom AI Systems</span> That Work For You
+    </h2>
+    <p class="section-subtitle">
+      We use advanced AI to build tailored systems that help businesses of any size work smarter, faster, and more profitably. From data entry automation to smart lead generation and client communication tools, our AI agents integrate directly into your workflow — like hiring a digital team member that never sleeps.
+    </p>
+  </section>
 
-    <section id="why-us">
-      <h2>Why Go With Us</h2>
-      <ul class="features">
-        <li><strong>Time Efficiency</strong><br />Automate repetitive tasks and free your team for high-impact work.</li>
-        <li><strong>1-on-1 Customization</strong><br />We work directly with you to build solutions specific to your business goals.</li>
-        <li><strong>Designed for Local & Growing Teams</strong><br />From local businesses to digital teams — ForgeOS scales with you.</li>
-      </ul>
-    </section>
+  <!-- Why Go With Us Section -->
+  <section id="why-us" class="section section-light">
+    <div style="text-align: center;">
+      <span class="section-badge">Why Go With Us</span>
+    </div>
+    <h2 class="section-title">
+      Built for Businesses That Want <span class="accent">Real Results</span>
+    </h2>
+    <div class="services-grid" style="max-width: 1200px; margin: 3rem auto 0;">
+      <div class="service-card">
+        <div class="service-icon icon-blue">⚡</div>
+        <h3>Save Time, Save Payroll</h3>
+        <p>Our tools automate repetitive tasks so your team can focus on growth — not grunt work. Reclaim hours every week and redirect your energy to what matters most.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-purple">🤝</div>
+        <h3>White-Glove Customization</h3>
+        <p>You get direct access to our engineers to build solutions specific to your workflow, tools, and goals. No templates, no compromises — just AI that fits your business perfectly.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-green">📈</div>
+        <h3>Local & Scalable</h3>
+        <p>Whether you're a local service provider or an online brand, we design AI that fits your scale — and grows with you. Start small, expand smart.</p>
+      </div>
+    </div>
+  </section>
 
-    <section id="contact">
-      <h2>Let’s Talk</h2>
-      <p>Interested in adding AI to your business for as little as $1k/month? Let’s build something together.</p>
-      <a href="mailto:hello@forgeos.org" class="cta">Contact Us</a>
-    </section>
-  </main>
+  <!-- Services Section -->
+  <section id="services" class="section">
+    <div style="text-align: center;">
+      <span class="section-badge">Our Solutions</span>
+    </div>
+    <h2 class="section-title">
+      AI Tools Built for <span class="accent">Your Business</span>
+    </h2>
+    <p class="section-subtitle">
+      From customer service to data processing, we build AI solutions that integrate seamlessly into your operations.
+    </p>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon icon-blue">⏰</div>
+        <h3>Smart Timekeeping <span style="font-size: 0.8em;">↗</span></h3>
+        <p>Automated time tracking that syncs with your payroll system. No more manual entry or timesheet disputes.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-purple">👥</div>
+        <h3>HR Automation <span style="font-size: 0.8em;">↗</span></h3>
+        <p>Streamline onboarding, PTO requests, and employee records with intelligent automation.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-green">📊</div>
+        <h3>KPI Tracking <span style="font-size: 0.8em;">↗</span></h3>
+        <p>Real-time dashboards that automatically collect and visualize your key business metrics.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-orange">📧</div>
+        <h3>Invoice Processor <span style="font-size: 0.8em;">↗</span></h3>
+        <p>AI reads incoming invoice emails and converts them to upload-ready files for your accounting software.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-blue">💬</div>
+        <h3>AI Customer Service <span style="font-size: 0.8em;">↗</span></h3>
+        <p>24/7 automated responses to inquiries, booking requests, and follow-ups. Never miss a lead again.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon icon-cyan">🔄</div>
+        <h3>System Integration <span style="font-size: 0.8em;">↗</span></h3>
+        <p>We connect with QuickBooks, Salesforce, Google Workspace, and your existing tools — no disruption to your workflow.</p>
+      </div>
+    </div>
+  </section>
 
+  <!-- Results Section -->
+  <section id="results" class="section section-light">
+    <div style="text-align: center;">
+      <span class="section-badge">Why AI Matters</span>
+    </div>
+    <h2 class="section-title">
+      The Business Case for <span class="accent">AI Automation</span>
+    </h2>
+    <p class="section-subtitle">
+      Companies that adopt AI early gain competitive advantages that compound over time. Here's what the research shows.
+    </p>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-card-icon icon-green">📈</div>
+        <div class="stat-card-value">40%</div>
+        <div class="stat-card-label">Productivity Increase</div>
+        <div class="stat-card-description">AI-powered businesses report significant productivity gains across operations</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon icon-blue">⏱️</div>
+        <div class="stat-card-value">30hrs</div>
+        <div class="stat-card-label">Weekly Time Savings</div>
+        <div class="stat-card-description">Average time saved on repetitive tasks through automation</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon icon-purple">💰</div>
+        <div class="stat-card-value">25%</div>
+        <div class="stat-card-label">Cost Reduction</div>
+        <div class="stat-card-description">Operational cost savings from automated workflows and processes</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-card-icon icon-orange">🚀</div>
+        <div class="stat-card-value">3x</div>
+        <div class="stat-card-label">Faster Scaling</div>
+        <div class="stat-card-description">AI-enabled companies scale operations faster without proportional cost increases</div>
+      </div>
+    </div>
+    <div style="max-width: 800px; margin: 4rem auto 0; padding: 2rem; background: white; border-radius: 16px; border: 2px solid #3b82f6;">
+      <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem; color: #111827; text-align: center;">
+        Early Adopters Win
+      </h3>
+      <p style="color: #6b7280; line-height: 1.8; text-align: center;">
+        Studies show that businesses implementing AI automation early see compounding advantages: better data, refined processes, and competitive moats that become harder to replicate over time. The question isn't whether to adopt AI — it's how quickly you can start.
+      </p>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process" class="section">
+    <div style="text-align: center;">
+      <span class="section-badge">Our Process</span>
+    </div>
+    <h2 class="section-title">
+      From Consultation to <span class="accent">Automation</span>
+    </h2>
+    <p class="section-subtitle">
+      A simple, proven process that gets you up and running with AI in as little as two weeks.
+    </p>
+    <div class="process-grid">
+      <div class="process-card">
+        <div class="process-number">01</div>
+        <div class="process-icon icon-blue">📞</div>
+        <h3>Discovery Call</h3>
+        <p>We learn about your business, pain points, and goals. No tech jargon—just a conversation about what's slowing you down.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-number">02</div>
+        <div class="process-icon icon-purple">🔍</div>
+        <h3>Analysis & Strategy</h3>
+        <p>We audit your current operations and identify exactly where AI can make the biggest impact on your bottom line.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-number">03</div>
+        <div class="process-icon icon-orange">🔧</div>
+        <h3>Custom Build</h3>
+        <p>We build and configure your AI tools, integrating seamlessly with your existing systems. No disruption to your work.</p>
+      </div>
+      <div class="process-card">
+        <div class="process-number">04</div>
+        <div class="process-icon icon-green">🚀</div>
+        <h3>Launch & Support</h3>
+        <p>Go live with full training for your team. We provide ongoing support and optimization to ensure maximum ROI.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section id="contact" class="cta-section">
+    <h2>Ready to Add AI to <span class="hero-accent">Your Business?</span></h2>
+    <p style="max-width: 700px; margin: 0 auto 1rem;">
+      We focus on building long-term partnerships with businesses committed to growth. Most clients start with one system and expand to 2-3 as they see the impact.
+    </p>
+    <p style="color: rgba(255,255,255,0.7); margin-bottom: 2.5rem;">
+      Typical projects start around $1k/month per system.
+    </p>
+    <a href="mailto:info@forgeos.org" class="btn-primary" style="font-size: 1.1rem; padding: 1.25rem 2.5rem;">
+      Book a Free Consultation →
+    </a>
+    <p style="margin-top: 1.5rem; color: rgba(255,255,255,0.6); font-size: 0.95rem;">
+      Email: info@forgeos.org | Phone: (216) 245-2658
+    </p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <p>&copy; 2026 ForgeOS. All rights reserved.</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="logo-icon">⚡</div>
+          <span class="logo-text">ForgeOS</span>
+        </div>
+        <p class="footer-description">
+          We build custom AI systems that help businesses work smarter, automate operations, and scale efficiently — no matter your size or industry.
+        </p>
+        <p class="footer-description">© 2026 ForgeOS. All rights reserved.</p>
+      </div>
+      <div class="footer-section">
+        <h3>Solutions</h3>
+        <ul class="footer-links">
+          <li><a href="#services">Smart Timekeeping</a></li>
+          <li><a href="#services">HR Automation</a></li>
+          <li><a href="#services">KPI Tracking</a></li>
+          <li><a href="#services">Invoice Processor</a></li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <h3>Company</h3>
+        <ul class="footer-links">
+          <li><a href="#what-we-do">What We Do</a></li>
+          <li><a href="#why-us">Why Us</a></li>
+          <li><a href="#results">Why AI Matters</a></li>
+          <li><a href="mailto:info@forgeos.org">Contact</a></li>
+        </ul>
+      </div>
+    </div>
   </footer>
+
+  <script>
+    // Product Slider Functionality
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.product-slide');
+    const dots = document.querySelectorAll('.slider-dot');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+      // Remove active class from all slides and dots
+      slides.forEach(slide => {
+        slide.classList.remove('active', 'exit-left');
+      });
+      dots.forEach(dot => dot.classList.remove('active'));
+
+      // Add active class to current slide and dot
+      slides[index].classList.add('active');
+      dots[index].classList.add('active');
+      
+      currentSlide = index;
+    }
+
+    function nextSlide() {
+      let next = (currentSlide + 1) % totalSlides;
+      showSlide(next);
+    }
+
+    function prevSlide() {
+      let prev = (currentSlide - 1 + totalSlides) % totalSlides;
+      showSlide(prev);
+    }
+
+    // Dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => showSlide(index));
+    });
+
+    // Arrow navigation
+    document.querySelector('.slider-prev').addEventListener('click', prevSlide);
+    document.querySelector('.slider-next').addEventListener('click', nextSlide);
+
+    // Auto-advance slider every 5 seconds
+    setInterval(nextSlide, 5000);
+
+    // Initialize first slide
+    showSlide(0);
+  </script>
 </body>
 </html>
